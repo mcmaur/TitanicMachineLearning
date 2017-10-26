@@ -88,6 +88,14 @@ print "Accuracy on train: ", clf_dt.score(features_train, labels_train)
 print "Accuracy on test: ", clf_dt.score(features_test, labels_test)
 print
 
+#Generating tree image with graphviz
+import graphviz 
+from sklearn import tree
+featurecolumns = ['clas', 'age', 'sex']
+dot_data = tree.export_graphviz(clf_dt, out_file=None,feature_names=featurecolumns) 
+graph = graphviz.Source(dot_data) 
+graph.render("tree")
+
 
 
 print "--EXAMPLES--"
@@ -120,6 +128,7 @@ resultMales = []
 resultClass1 = []
 resultClass2 = []
 resultClass3 = []
+
 for i in range(1, 100):
 	# composition of feature(clas, age, sexcode)
 
